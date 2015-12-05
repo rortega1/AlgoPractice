@@ -1,0 +1,67 @@
+<!Doctype html>
+
+<head>
+</head>
+<body>
+
+<script>
+
+!(function() {
+    
+    var displayArray = function(array) {
+        console.log(array); 
+    };
+
+    var swap = function(array, startIndex, endIndex) {
+        
+        var tmpValue = array[startIndex];
+        array[startIndex] = array[endIndex];
+        array[endIndex] = tmpValue;
+    };
+
+    var indexOfMinimum = function(array, startIndex) {
+    
+        var minIndex = startIndex;
+        var minValue = array[startIndex];
+    
+        for(var i = minIndex + 1; i < array.length; i++) {
+            
+            if(array[i] < minValue) {
+                swap(array, startIndex, i);
+                minIndex = i;
+                minValue = array[i];
+            }else if (array[i] === minValue) {
+                array.splice(array[i], 1);
+            }
+        }
+    
+        return minIndex;
+    };
+
+    var selectionSort = function(array) {
+        var index;
+        var tmpIndex;
+    
+        for(var i=0; i < array.length; i++) {
+            
+            index = indexOfMinimum(array, i);
+        }
+        
+        displayArray(array);
+    };
+
+    var array = [2, 1];
+    array = selectionSort(array);
+    var array = [2, 1, 4, 3, 6, 4, 6, 7, 8];
+    array = selectionSort(array);
+    var array = [2, 1, 5, 4, 3];
+    array = selectionSort(array);
+    var array = [99,88,77,66,55,44,33,22,11];
+    array = selectionSort(array);
+    
+    
+})();
+</script>
+</body>
+</html>
+

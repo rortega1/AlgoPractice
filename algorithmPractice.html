@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+<head>
+</head>
+<body>
+
+<script>
+	!(function() {
+
+	binarySearch = function(array, needle, callback) {
+		var min = 0;
+		var max = array.length - 1;
+        var guess;
+		
+		while(max >= min) {
+        
+            guess = Math.floor((min + max) / 2);
+
+            if(array[guess] === needle) {
+                
+                return callback(guess);
+                
+            } else if(needle < array[guess]) {
+                
+                max = guess - 1;
+                
+            } else {
+                    
+                min = guess + 1;    
+            }
+		}
+        
+        return callback(-1);
+	}
+    
+    linearSearch = function(array, needle, callback) {
+        
+        return callback(array.indexOf(needle));
+        
+    }
+    
+    var myArray = [];
+    for(var i = 0; i < 10000000; i++) {
+        
+        myArray.push(i);
+    }
+    
+      var start_time = new Date().getTime();
+      binarySearch(myArray, 548684, function(result) {
+         console.log("binary: " + result);
+         var end_time = new Date().getTime();
+
+         console.log("binary time: " + (end_time - start_time)/100000);
+      });
+    
+     var linear_start_time = new Date().getTime();
+     linearSearch(myArray, 548684, function(result) {
+         console.log("linear: " + result);
+         var linear_end_time = new Date().getTime();
+
+         console.log("linear time: " + (linear_end_time - linear_start_time)/100000);
+     });
+    
+
+})();
+
+</script>
+</body>
+
+</html>
